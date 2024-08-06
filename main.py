@@ -30,15 +30,6 @@ def reveal_clear_cells(start, grid):
     rows = len(grid)
     cols = len(grid[0])
     row, col = start
-
-    def adjacent_mines(r, c):
-        count = 0
-        for i in range(max(0, r - 1), min(r + 2, rows)):
-            for j in range(max(0, c - 1), min(c + 2, cols)):
-                if (i, j) != (r, c) and grid[i][j] == 1:
-                    count += 1
-        return count
-
     to_reveal = set()
     queue = [(row, col)]
     visited = set()
@@ -48,7 +39,7 @@ def reveal_clear_cells(start, grid):
         if (r, c) in visited:
             continue
         visited.add((r, c))
-        mine_count = adjacent_mines(r, c)
+        mine_count = mines_count((r,c), grid)
         if mine_count == 0:
             for i in range(max(0, r - 1), min(r + 2, rows)):
                 for j in range(max(0, c - 1), min(c + 2, cols)):
