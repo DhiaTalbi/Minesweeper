@@ -10,10 +10,7 @@ def grid_gen(size=10, mine_count=15):
     for (i, j) in mine_positions:
         grid[i][j] = 1
 
-    return grid   
-def print_grid(grid):
-    for i in range(10):
-        print(grid[i])       
+    return grid         
 def mines_count(cell, grid):
     rows = len(grid)
     cols = len(grid[0])
@@ -98,7 +95,7 @@ flag_img = pygame.image.load('flag.png')
 flag_img = pygame.transform.scale(flag_img, (cell_size, cell_size))
 
 mine_img = pygame.image.load('mine.png')
-mine_img = pygame.transform.scale(mine_img, (cell_size, cell_size))
+mine_img = pygame.transform.scale(mine_img, (cell_size * 0.75, cell_size * 0.75))
 
 def draw_grid():
     for row in range(size):
@@ -111,7 +108,7 @@ def draw_grid():
                 text_rect = text_surf.get_rect(center=(col * cell_size + cell_size // 2, row * cell_size + cell_size // 2))
                 screen.blit(text_surf, text_rect)
             elif grid[row][col] == 3:
-                screen.blit(mine_img, (col * cell_size, row * cell_size))
+                screen.blit(mine_img, (col * cell_size + cell_size /8, row * cell_size + cell_size /8))
             elif (row, col) in flags:
                 screen.blit(flag_img, (col * cell_size, row * cell_size))
 
